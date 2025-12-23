@@ -5,7 +5,7 @@ SELECT
     v.vehicle_name,
     b.start_date,
     b.end_date,
-    b.status
+    b.booking_status AS status
 FROM bookings b
 INNER JOIN "user" u ON b.user_id = u.id
 INNER JOIN vehicle v ON b.vehicle_id = v.id
@@ -19,7 +19,7 @@ SELECT
     v.model,
     v.reg_number,
     v.rental_price,
-    v.availability_status
+    v.vehicle_availability AS status
 FROM vehicle v
 WHERE NOT EXISTS (
     SELECT 1
@@ -36,13 +36,10 @@ SELECT
     v.model,
     v.reg_number,
     v.rental_price,
-    v.availability_status
+    v.vehicle_availability AS status
 FROM vehicle v
-WHERE v.availability_status = 'available'
+WHERE v.vehicle_availability = 'available'
   AND v.type = 'car';
-
-
-
 
 SELECT
     v.vehicle_name,
